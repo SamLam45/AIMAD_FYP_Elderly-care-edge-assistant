@@ -1,0 +1,185 @@
+@startuml
+set namespaceSeparator ::
+
+class "ladr::AddEventScreen.dart::AddEventScreen" {
+  +_AddEventScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "ladr::AddEventScreen.dart::AddEventScreen"
+
+class "ladr::AddEventScreen.dart::_AddEventScreenState" {
+  +TextEditingController eventController
+  -TimeOfDay _startTime
+  -TimeOfDay _endTime
+  +String reminder
+  +void initState()
+  +void saveEventToFirebase()
+  +Widget build()
+  +void addEventtime()
+}
+
+"ladr::AddEventScreen.dart::_AddEventScreenState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"ladr::AddEventScreen.dart::_AddEventScreenState" o-- "flutter::src::material::time.dart::TimeOfDay"
+"flutter::src::widgets::framework.dart::State" <|-- "ladr::AddEventScreen.dart::_AddEventScreenState"
+
+class "ladr::AI_asstesst.dart::AI_asstesst" {
+  +_AI_asstesstState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "ladr::AI_asstesst.dart::AI_asstesst"
+
+class "ladr::AI_asstesst.dart::_AI_asstesstState" {
+  -bool _listeningForCommand
+  -PicovoiceManager? _picovoiceManager
+  +String accessKey
+  +void initState()
+  -void _initPicovoice()
+  -void _wakeWordCallback()
+  -void _inferenceCallback()
+  +void saveEventToFirebase()
+  -void _performToDoListCommand()
+  +Widget build()
+}
+
+"ladr::AI_asstesst.dart::_AI_asstesstState" o-- "picovoice_flutter::picovoice_manager.dart::PicovoiceManager"
+"flutter::src::widgets::framework.dart::State" <|-- "ladr::AI_asstesst.dart::_AI_asstesstState"
+
+class "ladr::Family.dart::FamilyPage" {
+  +String text
+  +_FamilyPageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "ladr::Family.dart::FamilyPage"
+
+class "ladr::Family.dart::_FamilyPageState" {
+  +FirebaseStorage storage
+  -List<String> _imageUrls
+  -String? _text
+  +void initState()
+  -void _loadImagesFromFirebaseStorage()
+  +Widget build()
+}
+
+"ladr::Family.dart::_FamilyPageState" o-- "firebase_storage::firebase_storage.dart::FirebaseStorage"
+"flutter::src::widgets::framework.dart::State" <|-- "ladr::Family.dart::_FamilyPageState"
+
+class "ladr::firebase_options.dart::DefaultFirebaseOptions" {
+  {static} +FirebaseOptions web
+  {static} +FirebaseOptions android
+  {static} +FirebaseOptions ios
+  {static} +FirebaseOptions macos
+  {static} +FirebaseOptions currentPlatform
+}
+
+"ladr::firebase_options.dart::DefaultFirebaseOptions" o-- "firebase_core_platform_interface::firebase_core_platform_interface.dart::FirebaseOptions"
+
+class "ladr::home.dart::HomeScreen" {
+  +_HomeScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "ladr::home.dart::HomeScreen"
+
+class "ladr::home.dart::_HomeScreenState" {
+  +DateTime currentTime
+  +Timer timer
+  +List<Map<dynamic, dynamic>> events
+  +String closestEvent
+  +String closestTime
+  +void listenToEvents()
+  +void initState()
+  +void dispose()
+  +Widget build()
+}
+
+"ladr::home.dart::_HomeScreenState" o-- "dart::async::Timer"
+"flutter::src::widgets::framework.dart::State" <|-- "ladr::home.dart::_HomeScreenState"
+
+class "ladr::ImageReceiver.dart::ImageReceiver" {
+  +_ImageReceiverState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "ladr::ImageReceiver.dart::ImageReceiver"
+
+class "ladr::ImageReceiver.dart::_ImageReceiverState" {
+  +Socket? socket
+  +List<int> receivedData
+  +Image? receivedImage
+  +void initState()
+  +void connectToServer()
+  +Widget build()
+  +void dispose()
+}
+
+"ladr::ImageReceiver.dart::_ImageReceiverState" o-- "dart::io::Socket"
+"ladr::ImageReceiver.dart::_ImageReceiverState" o-- "flutter::src::widgets::image.dart::Image"
+"flutter::src::widgets::framework.dart::State" <|-- "ladr::ImageReceiver.dart::_ImageReceiverState"
+
+class "ladr::jetson_nano.dart::jetsonanoScreen" {
+  +_CameraScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "ladr::jetson_nano.dart::jetsonanoScreen"
+
+class "ladr::jetson_nano.dart::_CameraScreenState" {
+  +Socket? socket
+  +String serverIpAddress
+  +int serverPort
+  -bool _listeningForCommand
+  -PicovoiceManager? _picovoiceManager
+  +String accessKey
+  +void initState()
+  +void connectToServer()
+  -void _initPicovoice()
+  -void _wakeWordCallback()
+  -void _inferenceCallback()
+  +void sendCommand()
+  -void _openCamera()
+  +Widget build()
+  +void dispose()
+}
+
+"ladr::jetson_nano.dart::_CameraScreenState" o-- "dart::io::Socket"
+"ladr::jetson_nano.dart::_CameraScreenState" o-- "picovoice_flutter::picovoice_manager.dart::PicovoiceManager"
+"flutter::src::widgets::framework.dart::State" <|-- "ladr::jetson_nano.dart::_CameraScreenState"
+
+class "ladr::main.dart::MyApp" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ladr::main.dart::MyApp"
+
+class "ladr::Message.dart::MessagingService" {
+  -FirebaseMessaging _messaging
+  -FlutterLocalNotificationsPlugin _localNotifications
+  +void initialize()
+  -void _requestPermission()
+  -void _configureNotificationHandlers()
+  -void _handleBackgroundMessages()
+  -void _initializeLocalNotifications()
+  +dynamic showNotification()
+}
+
+"ladr::Message.dart::MessagingService" o-- "firebase_messaging::firebase_messaging.dart::FirebaseMessaging"
+"ladr::Message.dart::MessagingService" o-- "flutter_local_notifications::src::flutter_local_notifications_plugin.dart::FlutterLocalNotificationsPlugin"
+
+class "ladr::sendphotos.dart::DataSender" {
+  +String text
+  +File image
+  +dynamic sendDataToJetsonNano()
+  +dynamic sendtrainingtoJetsonNano()
+}
+
+"ladr::sendphotos.dart::DataSender" o-- "dart::io::File"
+
+class "ladr::sendphotos.dart::ImageUploader" {
+  +_ImageUploaderState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "ladr::sendphotos.dart::ImageUploader"
+
+"ladr::sendphotos.dart::_ImageUploaderState" o-- "dart::io::File"
+"ladr::sendphotos.dart::_ImageUploaderState" o-- "image_picker::image_picker.dart::ImagePicker"
+"flutter::src::widgets::framework.dart::State" <|-- "ladr::sendphotos.dart::_ImageUploaderState"
+
+
+@enduml

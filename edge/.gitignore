@@ -1,0 +1,10 @@
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.pkl
+*.mp3
+unknown_person.jpg
+data/
+firebase-adminsdk*.json
+*.log
