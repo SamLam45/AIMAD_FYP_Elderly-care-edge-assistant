@@ -1,6 +1,8 @@
 # 👵🏻 Elderly Care Edge Assistant (LAADR)
 
-> **Final Year Project (Higher Diploma)**
+> **🏆 Award-Winning Final Year Project (Higher Diploma)**
+> *Awarded Merit/Excellent Award (IT Category) at the YEUNG Kin-man Industrial Training Scheme Competition.*
+> 
 > An Edge AI caregiver system designed to support the daily lives of the elderly. This project integrates a **Flutter mobile application** with a **Jetson Nano Edge AI backend**, offering voice-controlled scheduling, real-time facial recognition, intruder alerts, and automated daily reminders.
 
 <p align="center">
